@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="In-Store Suite" verbose="1" >
+
+    <test name="Content API InStore Offers tests" >
+        <classes>
+
+        </classes>
+    </test>
+
+</suite>
