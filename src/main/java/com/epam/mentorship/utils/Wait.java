@@ -54,7 +54,7 @@ public class Wait {
         return null;
     }
 
-    public void waitForPageLoad() {
+    public static void waitForPageLoad() {
         ExpectedCondition<Boolean> pageLoadCondition = driver -> ((JavascriptExecutor) Driver.getDriver()).executeScript("return document.readyState").equals("complete");
         new WebDriverWait(Driver.getDriver(), DEFAULT_TIMEOUT).until(pageLoadCondition);
     }

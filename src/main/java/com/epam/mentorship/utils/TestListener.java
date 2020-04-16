@@ -9,7 +9,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 
-public class TestListener implements ITestListener {
+public class TestListener implements ITestListener, IInvokedMethodListener {
 
     public void onTestStart(ITestResult result) {
         Logger.info("Test: " + result.getClass() + " " + result.getName() + " is started");
@@ -20,7 +20,7 @@ public class TestListener implements ITestListener {
     }
 
     public void onTestFailure(ITestResult result) {
-        takeScreenshot();
+//        takeScreenshot();
         Logger.error("Test: " + result.getClass() + " " + result.getName() + " FAILED");
     }
 
@@ -37,14 +37,30 @@ public class TestListener implements ITestListener {
     }
 
     public void onFinish(ITestContext context) {
+        Driver.quit();
         Logger.info("Test: " + context.getClass() + " " + context.getName() + "is finished");
 
     }
 
-    @Attachment(value = "Page screenshot", type = "image/png")
-    public byte[] takeScreenshot() {
-        return ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+    @Override
+    public void beforeInvocation(IInvokedMethod iInvokedMethod, ITestResult iTestResult) {
+        if (iInvokedMethod.isTestMethod()) {
+Driver.setDriver();
+        }
     }
+
+    @Override
+    public void afterInvocation(IInvokedMethod iInvokedMethod, ITestResult iTestResult) {
+        if (iInvokedMethod.isTestMethod()) {
+//Driver.getDriver().quit();
+            }
+        }
+
+
+//    @Attachment(value = "Page screenshot", type = "image/png")
+//    public byte[] takeScreenshot() {
+//        return ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+//    }
 
 
 }

@@ -1,10 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="In-Store Suite" verbose="1" >
+<suite name="Smoke Suite" >
 
-    <test name="Content API InStore Offers tests" >
+    <test name="Content API InStore Offers tests" parallel="methods" thread-count="2">
         <classes>
-
+            <class name="com.epam.mentorship.MainMenuTest" />
         </classes>
     </test>
+
 
 </suite>

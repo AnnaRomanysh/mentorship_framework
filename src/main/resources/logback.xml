@@ -10,21 +10,6 @@
         <appender-ref ref="STDOUT" />
     </root>
 
-    <appender name="TIME_BASED_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <!-- daily rollover -->
-            <fileNamePattern>logs-output/errors.%d{yyyy-MM-dd-HH-mm}.%i.log</fileNamePattern>
-            <maxHistory>30</maxHistory>
-            <maxFileSize>1MB</maxFileSize>
-            <totalSizeCap>10MB</totalSizeCap>
-        </rollingPolicy>
-        <encoder >
-            <pattern> %d{HH:mm:ss} - %msg%n</pattern>
-        </encoder>
-    </appender>
-    <root level="ERROR">
-    <appender-ref ref="TIME_BASED_FILE" />
-    </root>
 </configuration>
 
 

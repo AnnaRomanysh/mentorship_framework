@@ -1,32 +1,61 @@
 package com.epam.mentorship;
 
-import com.epam.mentorship.core.annotations.Injector;
 import com.epam.mentorship.core.driver.Driver;
+import com.epam.mentorship.core.driver.Drivers;
+import com.epam.mentorship.core.pages.HomePage;
 import com.epam.mentorship.po.CategoriesMenuPO;
-
 import com.epam.mentorship.utils.Logger;
 import com.epam.mentorship.utils.Wait;
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import com.google.inject.Inject;
 import org.testng.annotations.Test;
 
-public class MainMenuTest  extends  BaseTest{
+import static com.epam.mentorship.utils.Logger.step;
 
-    @Injector
-    static CategoriesMenuPO categoriesMenuPO;
+
+public class MainMenuTest extends  BaseTest{
+
+    @Inject
+    CategoriesMenuPO categoriesMenuPO;
+
+    @Inject
+    HomePage homePage;
 
 
     @Test
     public void test()  {
-        Logger.step("Open");
-        WebDriver dr = Driver.getDriver();
-        Driver.get("http://automationpractice.com/index.php");
+//        homePage  = new HomePage();
+        homePage.open();
         Logger.error("Bla Bl bla");
-        categoriesMenuPO.getMenuCategoryByIndex(0).clickJS();
+        categoriesMenuPO=new CategoriesMenuPO();
+        categoriesMenuPO.clickOnLogo();
         Wait.ajaxWait(()->true);
-        Assert.assertTrue(false);
+
+    }
+    @Test
+    public void test1()  {
+//        homePage  = new HomePage();
+        homePage.open();
+        Logger.error("Bla Bl bla");
+        categoriesMenuPO=new CategoriesMenuPO();
+        categoriesMenuPO.clickOnLogo();
+        Wait.ajaxWait(()->true);
+
+    }
+    @Test
+    public void test2()  {
+//        homePage  = new HomePage();
+        homePage.open();
+        Logger.error("Bla Bl bla");
+        categoriesMenuPO=new CategoriesMenuPO();
+        categoriesMenuPO.clickOnLogo();
+        Wait.ajaxWait(()->true);
+
+    }
 
 
-
+    public void isSubMenuOpenByHover(){
+        homePage.open();
+        step("Verify menu is open by hover");
+//        categoriesMenuPO.getMenuCategoryByIndex()
     }
 }

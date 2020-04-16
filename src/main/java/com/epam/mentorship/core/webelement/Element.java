@@ -1,6 +1,7 @@
 package com.epam.mentorship.core.webelement;
 
 import com.epam.mentorship.core.driver.Driver;
+import com.google.inject.Inject;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Coordinates;
 
@@ -9,8 +10,11 @@ import java.util.List;
 
 public class Element implements IElement {
 
+
     protected final WebElement element;
 
+
+    @Inject
     public Element(WebElement element) {
         this.element = element;
     }
@@ -125,6 +129,7 @@ public class Element implements IElement {
             error("Element was not visible to hover " + "\n");
         }
     }
+
 
 
 }

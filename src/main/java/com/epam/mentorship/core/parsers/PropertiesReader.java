@@ -10,8 +10,11 @@ import java.util.Properties;
 
 public class PropertiesReader {
 
+    private static String propertiesLocation = "src//main//resources";
+    private static String pageProperties = "//pages.properties";
+    private static String driverProperties = "//driver.properties";
     private Properties prop;
-    private String data;
+
 
     public PropertiesReader(String propertiesFilePath) {
         prop = new Properties();
@@ -28,12 +31,22 @@ public class PropertiesReader {
             Logger.error("Could not read a file: " + e.getMessage());
         }
 
-
     }
 
-    public String getProperty(String propertyName) {
-        data = prop.getProperty(propertyName);
-        return data;
+    private static PropertiesReader getProperties(String propertyFilePath) {
+        return new PropertiesReader(propertiesLocation + propertyFilePath);
+    }
+
+    public static PropertiesReader getDriverProperties() {
+        return getProperties(driverProperties);
+    }
+
+    public static PropertiesReader getPageProperties() {
+        return getProperties(pageProperties);
+    }
+
+    public String getProperty(String name) {
+        return this.prop.getProperty(name);
     }
 
 }
