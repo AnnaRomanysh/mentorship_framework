@@ -37,7 +37,7 @@ public class TestListener implements ITestListener, IInvokedMethodListener {
     }
 
     public void onFinish(ITestContext context) {
-        Driver.quit();
+//        Driver.quit();
         Logger.info("Test: " + context.getClass() + " " + context.getName() + "is finished");
 
     }
@@ -52,7 +52,7 @@ Driver.setDriver();
     @Override
     public void afterInvocation(IInvokedMethod iInvokedMethod, ITestResult iTestResult) {
         if (iInvokedMethod.isTestMethod()) {
-//Driver.getDriver().quit();
+Driver.getDriver().quit();
             }
         }
 

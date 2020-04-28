@@ -26,7 +26,7 @@ public class MainMenuTest extends  BaseTest{
 //        homePage  = new HomePage();
         homePage.open();
         Logger.error("Bla Bl bla");
-        categoriesMenuPO=new CategoriesMenuPO();
+//        categoriesMenuPO=new CategoriesMenuPO();
         categoriesMenuPO.clickOnLogo();
         Wait.ajaxWait(()->true);
 
@@ -36,7 +36,7 @@ public class MainMenuTest extends  BaseTest{
 //        homePage  = new HomePage();
         homePage.open();
         Logger.error("Bla Bl bla");
-        categoriesMenuPO=new CategoriesMenuPO();
+//        categoriesMenuPO=new CategoriesMenuPO();
         categoriesMenuPO.clickOnLogo();
         Wait.ajaxWait(()->true);
 
@@ -46,7 +46,7 @@ public class MainMenuTest extends  BaseTest{
 //        homePage  = new HomePage();
         homePage.open();
         Logger.error("Bla Bl bla");
-        categoriesMenuPO=new CategoriesMenuPO();
+//        categoriesMenuPO=new CategoriesMenuPO();
         categoriesMenuPO.clickOnLogo();
         Wait.ajaxWait(()->true);
 

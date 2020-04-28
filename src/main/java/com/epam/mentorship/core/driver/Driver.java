@@ -1,7 +1,6 @@
 package com.epam.mentorship.core.driver;
 
 import com.epam.mentorship.utils.Logger;
-import com.google.inject.Inject;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -12,12 +11,10 @@ public class Driver {
     private static DriverFactory drivers = new DriverFactory();
     private static final ThreadLocal<WebDriver> DRIVER_POOL = new ThreadLocal<>();
 
-@Inject
     private Driver(){
-//
+
     }
 
-//
 public static WebDriver getDriver() {
 //    if (DRIVER_POOL.get() == null) {
 //        DRIVER_POOL.set(drivers.getDriver());
@@ -25,22 +22,14 @@ public static WebDriver getDriver() {
     return DRIVER_POOL.get();
 }
 
-//    public static WebDriver setDriver() {
-//       driver = drivers.getDriver();
-//        DRIVER_POOL.set(driver);
-//        return driver;
-//    }
+
 public static void setDriver() {
-//    if (DRIVER_POOL.get() == null) {
         DRIVER_POOL.set(drivers.getDriver());
-//    }
-//    DRIVER_POOL.set(drivers.getDriver());
-//    return DRIVER_POOL.get();
+
 }
 
     public static void quit() {
         Logger.info("Closing  browser");
-//        DRIVER_POOL.remove();
         if (DRIVER_POOL.get() != null) {
             DRIVER_POOL.get().quit();
             DRIVER_POOL.remove();

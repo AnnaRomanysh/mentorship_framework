@@ -1,6 +1,8 @@
 package com.epam.mentorship.po;
 
 import com.epam.mentorship.core.webelement.Element;
+import com.google.inject.Inject;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 
@@ -14,6 +16,11 @@ public class CategoriesMenuPO extends BasePO {
 
     @FindBy(tagName = "body")
     Element logo;
+
+    @Inject
+    public CategoriesMenuPO(WebDriver driver) {
+        super(driver);
+    }
 
 //    @FindBy(css = "ul.menu-content>li>a")
 //    List<Element> menuCategories;
