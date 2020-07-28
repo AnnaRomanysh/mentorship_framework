@@ -1,0 +1,1 @@
+{"uuid":"33e6eee5-6a39-43b8-9e90-9c808925c36d","name":"com.epam.mentorship.LoginTest","children":["1ec97a15-c000-4cca-a270-43ac72116389"],"befores":[{"name":"initialize","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1588264183059,"stop":1588264183227}],"afters":[],"links":[],"start":1588264182950,"stop":1588264194225}
