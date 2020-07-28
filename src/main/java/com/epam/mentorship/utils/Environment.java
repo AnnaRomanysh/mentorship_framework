@@ -1,19 +1,16 @@
 package com.epam.mentorship.utils;
 
-import java.util.Map;
-import java.util.Properties;
+import com.epam.mentorship.core.driver.Drivers;
+
+import java.util.Objects;
 
 public class Environment {
+    
+    public static String getBrowserName(){
+      String br= System.getenv("BROWSER");
+        return Objects.isNull(br)|| Objects.isNull(Drivers.getDriverType(br)) ?Drivers.CHROME.getDriverValue():br;
 
-    public Map<String, String> getEnv(){
-      return  System.getenv();
     }
-    public String getProperty(String propertyKey){
-        return System.getProperty(propertyKey);
-    }
-    public Properties getProperties(String property){
-        return System.getProperties();
-    }
-
-
+    
+ 
 }

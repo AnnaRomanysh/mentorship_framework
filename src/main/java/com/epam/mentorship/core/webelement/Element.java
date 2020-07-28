@@ -1,12 +1,14 @@
 package com.epam.mentorship.core.webelement;
 
 import com.epam.mentorship.core.driver.Driver;
-import com.google.inject.Inject;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Coordinates;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.epam.mentorship.utils.Wait.waitToBeClickable;
+import static com.epam.mentorship.utils.Wait.waitToBeVisible;
 
 public class Element implements IElement {
 
@@ -14,7 +16,6 @@ public class Element implements IElement {
     protected final WebElement element;
 
 
-    @Inject
     public Element(WebElement element) {
         this.element = element;
     }
@@ -35,6 +36,11 @@ public class Element implements IElement {
     }
 
     public void click() {
+        element.click();
+    }
+
+    public void waitAndClick() {
+        waitToBeClickable(this);
         element.click();
     }
 
@@ -94,6 +100,14 @@ public class Element implements IElement {
 
     public Rectangle getRect() {
         return element.getRect();
+    }
+
+    public void waitClickable(){
+        waitToBeClickable(this);
+    }
+
+    public void waitVisible(){
+        waitToBeVisible(this);
     }
 
     public String getCssValue(String propertyName) {

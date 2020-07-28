@@ -2,7 +2,6 @@ package com.epam.mentorship.core.driver;
 
 public enum  Drivers {
 
-    IE("ieDriver"),
     CHROME("chrome"),
     FIREFOX("firefox"),
     REMOTE__DRIVER("remote web driver");

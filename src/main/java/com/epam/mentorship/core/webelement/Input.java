@@ -9,6 +9,7 @@ public class Input extends Element {
     }
 
     public void sendKeys(CharSequence... charSequences) {
+        clear();
         getWrappedElement().sendKeys(charSequences);
     }
 

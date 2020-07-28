@@ -21,7 +21,9 @@
         <allure.testng.version>2.11.0</allure.testng.version>
         <failsafe.version>3.0.0-M3</failsafe.version>
         <compiler.version>3.8.0</compiler.version>
-        <guice.injector.version>3.0</guice.injector.version>
+        <guice.injector.version>4.2.3</guice.injector.version>
+        <lombok.version>1.18.12</lombok.version>
+        <gson.version>2.8.6</gson.version>
     </properties>
 
     <dependencies>
@@ -36,13 +38,11 @@
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
         </dependency>
-
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
             <version>${logback.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -70,42 +70,44 @@
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
-                <artifactId>guice-parent</artifactId>
-                <version>4.2.3</version>
-                <type>pom</type>
-            </dependency>
-
-        
+            <artifactId>guice-parent</artifactId>
+            <version>${guice.injector.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
     </dependencies>
 
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${failsafe.version}</version>
+                <version>3.0.0-M4</version>
+
                 <executions>
                     <execution>
-                        <configuration>
-                            <goals>
-                                <goal>integration-test</goal>
-                            </goals>
-                            <parallel>methods</parallel>
-                            <threadCount>2</threadCount>
-                            <argLine>
-                                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                            </argLine>
-                            <systemProperties>
-                                <property>
-                                    <name>allure.results.directory</name>
-                                    <value>${project.build.directory}\allure-results</value>
-                                </property>
-                            </systemProperties>
-                        </configuration>
-
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
                     </execution>
                 </executions>
+                <configuration>
+
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>org.aspectj</groupId>
@@ -114,33 +116,30 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${compiler.version}</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
-                <plugin>
-                    <groupId>io.qameta.allure</groupId>
-                    <artifactId>allure-maven</artifactId>
-                    <version>2.9</version>
-                    <configuration>
-                        <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
-                        <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
-                        <reportingOutputDirectory>${project.build.directory}/allure-results</reportingOutputDirectory>
-                        <reportVersion>2.3.1</reportVersion>
-                    </configuration>
-                </plugin>
-
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <resultsDirectory>${project.build.directory}\allure-results</resultsDirectory>
+                    <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
+                    <reportingOutputDirectory>${project.build.directory}/allure-results</reportingOutputDirectory>
+                    <reportVersion>2.6.0</reportVersion>
+                    <propertiesFilePath>src/main/resources/allure.properties</propertiesFilePath>
+                </configuration>
+            </plugin>
         </plugins>
 
     </build>
-    <reporting>
-        <excludeDefaults>true</excludeDefaults>
 
-    </reporting>
 </project>

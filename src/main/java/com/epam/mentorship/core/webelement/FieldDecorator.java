@@ -1,10 +1,9 @@
 package com.epam.mentorship.core.webelement;
 
-import org.openqa.selenium.SearchContext;
+import com.epam.mentorship.core.driver.DriverProvider;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
-import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.DefaultFieldDecorator;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 
@@ -13,8 +12,8 @@ import java.util.List;
 
 public class FieldDecorator extends DefaultFieldDecorator {
 
-    public FieldDecorator(SearchContext searchContext) {
-        super(new DefaultElementLocatorFactory(searchContext));
+    public FieldDecorator(DriverProvider provider) {
+        super(new DefaultElementLocatorFactory(provider));
     }
 
 

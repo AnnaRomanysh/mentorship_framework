@@ -1,12 +1,9 @@
 package com.epam.mentorship;
 
-import com.epam.mentorship.core.driver.Driver;
-import com.epam.mentorship.core.driver.Drivers;
 import com.epam.mentorship.core.pages.HomePage;
-import com.epam.mentorship.po.CategoriesMenuPO;
+import com.epam.mentorship.core.po.CategoriesMenuPO;
 import com.epam.mentorship.utils.Logger;
 import com.epam.mentorship.utils.Wait;
-import com.google.inject.Inject;
 import org.testng.annotations.Test;
 
 import static com.epam.mentorship.utils.Logger.step;
@@ -14,43 +11,42 @@ import static com.epam.mentorship.utils.Logger.step;
 
 public class MainMenuTest extends  BaseTest{
 
-    @Inject
+//    @Inject
     CategoriesMenuPO categoriesMenuPO;
 
-    @Inject
+//    @Inject
     HomePage homePage;
 
 
-    @Test
-    public void test()  {
+//    @Test
+//    public void test()  {
 //        homePage  = new HomePage();
-        homePage.open();
-        Logger.error("Bla Bl bla");
+//        homePage.open();
+//        Logger.error("Bla Bl bla");
 //        categoriesMenuPO=new CategoriesMenuPO();
-        categoriesMenuPO.clickOnLogo();
-        Wait.ajaxWait(()->true);
-
-    }
-    @Test
-    public void test1()  {
+//        categoriesMenuPO.clickOnLogo();
+//        Wait.ajaxWait(()->true);
+//
+//    }
+//    @Test
+//    public void test1()  {
 //        homePage  = new HomePage();
-        homePage.open();
-        Logger.error("Bla Bl bla");
+//        homePage.open();
+//        Logger.error("Bla Bl bla");
 //        categoriesMenuPO=new CategoriesMenuPO();
-        categoriesMenuPO.clickOnLogo();
-        Wait.ajaxWait(()->true);
-
-    }
-    @Test
-    public void test2()  {
+//        categoriesMenuPO.clickOnLogo();
+//        Wait.ajaxWait(()->true);
+//
+//    }
+//    @Test
+//    public void test2()  {
 //        homePage  = new HomePage();
-        homePage.open();
-        Logger.error("Bla Bl bla");
+//        homePage.open();
+//        Logger.error("Bla Bl bla");
 //        categoriesMenuPO=new CategoriesMenuPO();
-        categoriesMenuPO.clickOnLogo();
-        Wait.ajaxWait(()->true);
-
-    }
+//        categoriesMenuPO.clickOnLogo();
+//        Wait.ajaxWait(()->true);
+//    }
 
 
     public void isSubMenuOpenByHover(){

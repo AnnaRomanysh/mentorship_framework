@@ -13,6 +13,7 @@ public class PropertiesReader {
     private static String propertiesLocation = "src//main//resources";
     private static String pageProperties = "//pages.properties";
     private static String driverProperties = "//driver.properties";
+    private static String testDataProperties = "//testdata/data.properties";
     private Properties prop;
 
 
@@ -41,11 +42,15 @@ public class PropertiesReader {
         return getProperties(driverProperties);
     }
 
+    public static PropertiesReader getTestData() {
+        return getProperties(testDataProperties);
+    }
+
     public static PropertiesReader getPageProperties() {
         return getProperties(pageProperties);
     }
 
-    public String getProperty(String name) {
+    public String get(String name) {
         return this.prop.getProperty(name);
     }
 
