@@ -1,11 +1,7 @@
 package com.epam.mentorship.utils;
 
 import com.epam.mentorship.core.driver.Driver;
-import io.qameta.allure.Attachment;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.testng.*;
 
 import static com.epam.mentorship.utils.Logger.error;
@@ -18,18 +14,17 @@ public class TestListener implements ITestListener, IInvokedMethodListener, IExe
     }
 
     public void onTestSuccess(ITestResult result) {
-        takeScreenshot();
-
-        Logger.info("Test: " + result.getClass() + " " + result.getName() + " PASSED");
+//        takeScreenshot();
+        Logger.info("Test: " + result.getClass() + " " + result.getName() + " [*PASSED*]");
     }
 
     public void onTestFailure(ITestResult result) {
 
-        error("Test: " + result.getClass() + " " + result.getName() + " FAILED");
+        error("Test: " + result.getClass() + " " + result.getName() + "[*FAILED*]");
     }
 
     public void onTestSkipped(ITestResult result) {
-        error("Test: " + result.getClass() + " " + result.getName() + " SKIPPED");
+        error("Test: " + result.getClass() + " " + result.getName() + "[*SKIPPED*]");
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
@@ -63,17 +58,17 @@ public class TestListener implements ITestListener, IInvokedMethodListener, IExe
     }
 
 
-    @Attachment(value = "Page screenshot", type = "image/png")
-    public byte[] takeScreenshot() {
-        byte[] sc = new byte[]{};
-        try {
-            sc = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-        }
-        catch (WebDriverException e){
-            error("[FAILURE] Failed to capture screenshot. " + e.getMessage());
-        }
-        return sc;
-    }
+//    @Attachment(value = "Page screenshot", type = "image/png")
+//    public byte[] takeScreenshot() {
+//        byte[] sc = new byte[]{};
+//        try {
+//            sc = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+//        }
+//        catch (WebDriverException e){
+//            error("[FAILURE] Failed to capture screenshot. " + e.getMessage());
+//        }
+//        return sc;
+//    }
 
 
     @Override

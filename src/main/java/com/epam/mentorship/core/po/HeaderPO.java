@@ -2,6 +2,7 @@ package com.epam.mentorship.core.po;
 
 import com.epam.mentorship.core.webelement.Link;
 import com.google.inject.Inject;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.support.FindBy;
 
@@ -31,6 +32,7 @@ public class HeaderPO extends BasePO {
         super();
     }
 
+    @Step("Click")
     public void clickSignInLink() {
         waitToBeClickable(signInLink);
         signInLink.clickJS();
