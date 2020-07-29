@@ -17,7 +17,7 @@
         <aspectj.version>1.8.10</aspectj.version>
         <selenium.version>3.141.59</selenium.version>
         <testng.version>6.14.3</testng.version>
-        <allure.maven.version>2.9</allure.maven.version>
+        <allure.maven.version>2.6.0</allure.maven.version>
         <allure.testng.version>2.6.0</allure.testng.version>
         <failsafe.version>3.0.0-M3</failsafe.version>
         <compiler.version>3.8.0</compiler.version>
@@ -52,6 +52,11 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>${allure.maven.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
