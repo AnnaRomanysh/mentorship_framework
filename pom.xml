@@ -14,11 +14,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <slf4j.version>1.7.26</slf4j.version>
         <logback.version>1.2.3</logback.version>
-        <aspectj.version>1.8.10</aspectj.version>
+        <aspectj.version>1.9.5</aspectj.version>
         <selenium.version>3.141.59</selenium.version>
         <testng.version>6.14.3</testng.version>
         <allure.maven.version>2.9</allure.maven.version>
-        <allure.testng.version>2.11.0</allure.testng.version>
+        <allure.testng.version>2.6.0</allure.testng.version>
         <failsafe.version>3.0.0-M3</failsafe.version>
         <compiler.version>3.8.0</compiler.version>
         <guice.injector.version>4.2.3</guice.injector.version>
@@ -52,11 +52,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-maven</artifactId>
-            <version>${allure.maven.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -130,13 +125,6 @@
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.9</version>
-                <configuration>
-                    <resultsDirectory>${project.build.directory}\allure-results</resultsDirectory>
-                    <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
-                    <reportingOutputDirectory>${project.build.directory}/allure-results</reportingOutputDirectory>
-                    <reportVersion>2.6.0</reportVersion>
-                    <propertiesFilePath>src/main/resources/allure.properties</propertiesFilePath>
-                </configuration>
             </plugin>
         </plugins>
 
