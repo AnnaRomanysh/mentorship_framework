@@ -21,6 +21,7 @@ public class LoginFormPO extends BasePO{
     @FindBy(id = "SubmitLogin")
     Element signInButtonField;
 
+
     public LoginFormPO fillEmailField(String email) {
         emailField.waitVisible();
         emailField.sendKeys(email);
