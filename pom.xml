@@ -14,7 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <slf4j.version>1.7.26</slf4j.version>
         <logback.version>1.2.3</logback.version>
-        <aspectj.version>1.9.5</aspectj.version>
+        <aspectj.version>1.8.10</aspectj.version>
         <selenium.version>3.141.59</selenium.version>
         <testng.version>6.14.3</testng.version>
         <allure.maven.version>2.9</allure.maven.version>
@@ -52,11 +52,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-maven</artifactId>
-            <version>${allure.maven.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>

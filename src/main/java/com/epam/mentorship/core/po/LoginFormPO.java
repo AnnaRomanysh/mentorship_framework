@@ -3,6 +3,7 @@ package com.epam.mentorship.core.po;
 import com.epam.mentorship.core.webelement.Element;
 import com.epam.mentorship.core.webelement.Input;
 import com.epam.mentorship.core.webelement.Link;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.support.FindBy;
 
@@ -21,6 +22,7 @@ public class LoginFormPO extends BasePO{
     @FindBy(id = "SubmitLogin")
     Element signInButtonField;
 
+    @Step ("fvdfvdf")
     public LoginFormPO fillEmailField(String email) {
         emailField.waitVisible();
         emailField.sendKeys(email);
