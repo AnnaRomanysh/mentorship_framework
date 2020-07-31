@@ -15,6 +15,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -34,7 +35,12 @@ public class AllureAspect {
     public void pageObjects() {
     }
 
-    @Around("pageObjects() && !@annotation(io.qameta.allure.Step)")
+    @Pointcut("execution(public * com.epam.mentorship.businessobject.*.*(..))")
+    public void bussinessObjects() {
+    }
+
+
+    @Around("(pageObjects()|| bussinessObjects())&&!@annotation(io.qameta.allure.Step)")
     public Object step(ProceedingJoinPoint joinPoint) throws Throwable {
         final MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         final Step step = methodSignature.getMethod().getAnnotation(Step.class);
@@ -42,17 +48,17 @@ public class AllureAspect {
 
         final String methodName = Optional.of(arrayToString(joinPoint.getArgs()))
                 .filter(StringUtils::isNoneEmpty)
-                .map(value -> processNameTemplate(methodSignature.getName(), getParametersMap(methodSignature, joinPoint.getArgs())))
-                .orElse(methodSignature.getName());
+                .map(value -> processNameTemplate(convertToReadableFormat(methodSignature.getName()), getParametersMap(methodSignature, joinPoint.getArgs())))
+                .orElse(convertToReadableFormat(methodSignature.getName()));
 
         final String stepName = step != null ? Optional.of(step.value())
                 .filter(StringUtils::isNoneEmpty)
                 .map(value -> processNameTemplate(value, getParametersMap(methodSignature, joinPoint.getArgs())))
-                .orElse(methodSignature.getName()) : methodName;
+                .orElse(convertToReadableFormat(methodSignature.getName())) : methodName;
 
-        String name = stepName.equalsIgnoreCase("logStep") ? arrayToString(joinPoint.getArgs()) : stepName;
+        String name = stepName.equalsIgnoreCase("step") ? arrayToString(joinPoint.getArgs()) : stepName;
 
-        final StepResult result = (!stepName.equalsIgnoreCase("logStep")) ? new StepResult().withName(name).withParameters(getParameters(methodSignature, joinPoint.getArgs())) : new StepResult().withName(name);
+        final StepResult result = (!stepName.equalsIgnoreCase("step")) ? new StepResult().withName(name).withParameters(getParameters(methodSignature, joinPoint.getArgs())) : new StepResult().withName(name);
 
         getLifecycle().startStep(uuid, result);
         try {
@@ -84,4 +90,22 @@ public class AllureAspect {
                 .collect(Collectors.joining(", "));
     }
 
+    private String convertToReadableFormat(String methodName) {
+        String[] ops = methodName.split("");
+        StringBuilder stringBuilder = new StringBuilder();
+        Pattern pattern = Pattern.compile("[A-Z]");
+        for (int i = 0; i < ops.length; i++) {
+            int index = i >= ops.length - 1 ? i : i + 1;
+            boolean startsFromUpper = pattern.matcher(ops[index]).find();
+            stringBuilder.append(ops[i].toLowerCase());
+            if (i == 0) {
+                stringBuilder.replace(0, 1, ops[i].toUpperCase());
+            }
+            if (startsFromUpper) {
+                stringBuilder.append(" ");
+            }
+
+        }
+        return stringBuilder.toString();
+    }
 }
