@@ -112,41 +112,6 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <!--<plugin>-->
-                <!--<artifactId>maven-failsafe-plugin</artifactId>-->
-                <!--<version>2.20</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<goals>-->
-                            <!--<goal>integration-test</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<suiteXmlFiles>-->
-                                <!--<suiteXmlFile>testsuites/test.xml</suiteXmlFile>-->
-                            <!--</suiteXmlFiles>-->
-                            <!--<argLine>-->
-                                <!-- -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"-->
-                            <!--</argLine>-->
-                            <!--<groupId>org.aspectj</groupId>-->
-                            <!--<systemProperties>-->
-                                <!--<property>-->
-                                    <!--<name>allure.results.directory</name>-->
-                                    <!--<value>${project.build.directory}/allure-results</value>-->
-                                <!--</property>-->
-                            <!--</systemProperties>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-                <!--<dependencies>-->
-                    <!--<dependency>-->
-                        <!--<groupId>org.aspectj</groupId>-->
-                        <!--<artifactId>aspectjweaver</artifactId>-->
-                        <!--<version>${aspectj.version}</version>-->
-                    <!--</dependency>-->
-                <!--</dependencies>-->
-            <!--</plugin>-->
-
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -156,8 +121,6 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
-
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>

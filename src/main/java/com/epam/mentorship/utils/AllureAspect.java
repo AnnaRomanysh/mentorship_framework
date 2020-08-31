@@ -39,8 +39,12 @@ public class AllureAspect {
     public void bussinessObjects() {
     }
 
+    @Pointcut("execution(public * com.epam.mentorship.*.*.step(..))")
+    public void step(){
 
-    @Around("(pageObjects()|| bussinessObjects())&&!@annotation(io.qameta.allure.Step)")
+    }
+
+    @Around("(pageObjects()|| bussinessObjects() || step())&&!@annotation(io.qameta.allure.Step)")
     public Object step(ProceedingJoinPoint joinPoint) throws Throwable {
         final MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         final Step step = methodSignature.getMethod().getAnnotation(Step.class);

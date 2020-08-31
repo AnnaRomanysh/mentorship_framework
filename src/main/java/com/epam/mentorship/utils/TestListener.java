@@ -1,18 +1,21 @@
 package com.epam.mentorship.utils;
 
 import com.epam.mentorship.core.driver.Driver;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.listener.StepLifecycleListener;
+import io.qameta.allure.model.Status;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
 
+import java.io.ByteArrayInputStream;
+
 import static com.epam.mentorship.utils.Logger.error;
-import static io.qameta.allure.model.Status.FAILED;
 
 
-public class TestListener implements ITestListener, IInvokedMethodListener, IExecutionListener, ISuiteListener, StepLifecycleListener {
+public class TestListener implements ITestListener, StepLifecycleListener {
 
     public void onTestStart(ITestResult result) {
         Driver.setDriver();
@@ -49,7 +52,6 @@ public class TestListener implements ITestListener, IInvokedMethodListener, IExe
 
     public void onStart(ITestContext context) {
 
-
     }
 
     public void onFinish(ITestContext context) {
@@ -58,58 +60,18 @@ public class TestListener implements ITestListener, IInvokedMethodListener, IExe
 
     }
 
-    @Override
-    public void beforeInvocation(IInvokedMethod iInvokedMethod, ITestResult iTestResult) {
-
-    }
-
-    @Override
-    public void afterInvocation(IInvokedMethod iInvokedMethod, ITestResult iTestResult) {
-
-    }
-
-
     @Attachment(value = "Page screenshot", type = "image/png")
     public byte[] takeScreenshot() {
-        byte[] sc = new byte[]{};
-//        try {
-            sc = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-//        }
-//        catch (WebDriverException e){
-//            error("[FAILURE] Failed to capture screenshot. " + e.getMessage());
-//        }
-        return sc;
+        return ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
 
     @Override
-    public void onExecutionStart() {
-
-    }
-
-    @Override
-    public void onExecutionFinish() {
-
-    }
-
-    @Override
-    public void onStart(ISuite suite) {
-
-    }
-
-    @Override
-    public void onFinish(ISuite suite) {
-
-    }
-
-
-    @Override
-    public void afterStepStop(io.qameta.allure.model.StepResult result) {
-        Logger.step("Test stoped");
-       if(result.getStatus().equals(FAILED)){
-           Logger.step("Taking screenshot");
-           takeScreenshot();
-       }
+    public void afterStepUpdate(io.qameta.allure.model.StepResult result) {
+        if (result.getStatus().equals(Status.FAILED) || result.getStatus().equals(Status.BROKEN)) {
+            byte[] sc = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+            Allure.addAttachment(result.getName()+" screenshot", new ByteArrayInputStream(sc));
+        }
     }
 
 }

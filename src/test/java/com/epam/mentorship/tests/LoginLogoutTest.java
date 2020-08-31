@@ -1,5 +1,6 @@
-package com.epam.mentorship;
+package com.epam.mentorship.tests;
 
+import com.epam.mentorship.BaseTest;
 import com.epam.mentorship.businessobject.LoginBO;
 import com.epam.mentorship.core.models.User;
 import com.epam.mentorship.core.pages.HomePage;
@@ -8,7 +9,6 @@ import com.epam.mentorship.core.po.ErrorFormBlockPO;
 import com.epam.mentorship.core.po.HeaderPO;
 import com.epam.mentorship.data.Data;
 import com.google.inject.Inject;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.epam.mentorship.core.driver.Driver.getDriver;
@@ -33,10 +33,6 @@ public class LoginLogoutTest extends BaseTest {
     public ErrorFormBlockPO errorFormBlockPO;
 
 
-    @BeforeMethod
-          public   void dothr(){
-
-    }
     @Test
     public void verifyLoginButton() {
         homePage.open();

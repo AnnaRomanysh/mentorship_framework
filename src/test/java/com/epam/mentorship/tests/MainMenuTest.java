@@ -1,15 +1,13 @@
-package com.epam.mentorship;
+package com.epam.mentorship.tests;
 
+import com.epam.mentorship.BaseTest;
 import com.epam.mentorship.core.pages.HomePage;
 import com.epam.mentorship.core.po.CategoriesMenuPO;
-import com.epam.mentorship.utils.Logger;
-import com.epam.mentorship.utils.Wait;
-import org.testng.annotations.Test;
 
 import static com.epam.mentorship.utils.Logger.step;
 
 
-public class MainMenuTest extends  BaseTest{
+public class MainMenuTest extends BaseTest {
 
 //    @Inject
     CategoriesMenuPO categoriesMenuPO;
