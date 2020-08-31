@@ -10,7 +10,6 @@ public class LoginBO {
 @Inject
 LoginFormPO loginFormPO;
 
-
     @Step("Login with user : {user.email}")
     public void login(User user){
      loginFormPO
