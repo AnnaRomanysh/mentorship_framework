@@ -12,7 +12,6 @@ public class Driver {
     private static Driver driver = null;
     static ThreadLocal<WebDriver> DRIVER_POOL = new ThreadLocal();
 
-
     @Inject
     private Driver() {
 

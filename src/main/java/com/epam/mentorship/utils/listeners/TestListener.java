@@ -81,7 +81,7 @@ public class TestListener implements ITestListener, StepLifecycleListener, ISuit
     public void onStart(ISuite iSuite) {
         if(Environment.isParallel()){
             step("Running test suite in parallel");
-            iSuite.getXmlSuite().setParallel(XmlSuite.ParallelMode.METHODS);
+            iSuite.getXmlSuite().setParallel(XmlSuite.ParallelMode.CLASSES);
             iSuite.getXmlSuite().setThreadCount(2);
         }
     }
