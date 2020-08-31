@@ -6,7 +6,6 @@ import io.qameta.allure.listener.StepLifecycleListener;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.testng.*;
 
 import static com.epam.mentorship.utils.Logger.error;
@@ -21,8 +20,6 @@ public class TestListener implements ITestListener, IInvokedMethodListener, IExe
     }
 
     public void onTestSuccess(ITestResult result) {
-
-        takeScreenshot();
         WebDriver driver = Driver.getDriver();
         if (driver != null) {
             driver.quit();
@@ -75,12 +72,12 @@ public class TestListener implements ITestListener, IInvokedMethodListener, IExe
     @Attachment(value = "Page screenshot", type = "image/png")
     public byte[] takeScreenshot() {
         byte[] sc = new byte[]{};
-        try {
+//        try {
             sc = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-        }
-        catch (WebDriverException e){
-            error("[FAILURE] Failed to capture screenshot. " + e.getMessage());
-        }
+//        }
+//        catch (WebDriverException e){
+//            error("[FAILURE] Failed to capture screenshot. " + e.getMessage());
+//        }
         return sc;
     }
 
@@ -108,7 +105,9 @@ public class TestListener implements ITestListener, IInvokedMethodListener, IExe
 
     @Override
     public void afterStepStop(io.qameta.allure.model.StepResult result) {
+        Logger.step("Test stoped");
        if(result.getStatus().equals(FAILED)){
+           Logger.step("Taking screenshot");
            takeScreenshot();
        }
     }
