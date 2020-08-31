@@ -2,6 +2,7 @@ package com.epam.mentorship.utils;
 
 import com.epam.mentorship.core.driver.Driver;
 import io.qameta.allure.Attachment;
+import io.qameta.allure.listener.StepLifecycleListener;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -9,9 +10,11 @@ import org.openqa.selenium.WebDriverException;
 import org.testng.*;
 
 import static com.epam.mentorship.utils.Logger.error;
+import static io.qameta.allure.model.Status.FAILED;
 
 
-public class TestListener implements ITestListener, IInvokedMethodListener, IExecutionListener, ISuiteListener{
+public class TestListener implements ITestListener, IInvokedMethodListener, IExecutionListener, ISuiteListener, StepLifecycleListener {
+
     public void onTestStart(ITestResult result) {
         Driver.setDriver();
         Logger.info("Test: " + result.getClass() + " " + result.getName() + " is started");
@@ -65,12 +68,7 @@ public class TestListener implements ITestListener, IInvokedMethodListener, IExe
 
     @Override
     public void afterInvocation(IInvokedMethod iInvokedMethod, ITestResult iTestResult) {
-//        if (iInvokedMethod.isTestMethod()) {
-//            WebDriver driver = Driver.getDriver();
-//            if (driver != null) {
-//                driver.quit();
-//            }
-//        }
+
     }
 
 
@@ -106,4 +104,13 @@ public class TestListener implements ITestListener, IInvokedMethodListener, IExe
     public void onFinish(ISuite suite) {
 
     }
+
+
+    @Override
+    public void afterStepStop(io.qameta.allure.model.StepResult result) {
+       if(result.getStatus().equals(FAILED)){
+           takeScreenshot();
+       }
+    }
+
 }
