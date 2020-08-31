@@ -9,54 +9,32 @@ import org.openqa.selenium.interactions.Actions;
 
 public class Driver {
 
-    private  static Driver driver = null;
-//    private static  ;
- static ThreadLocal<WebDriver> DRIVER_POOL = new ThreadLocal();
-static WebDriver webDriver;
+    private static Driver driver = null;
+    static ThreadLocal<WebDriver> DRIVER_POOL = new ThreadLocal();
 
-@Inject
-    private Driver(){
+
+    @Inject
+    private Driver() {
 
     }
 
-    public  static WebDriver  getDriver(){
-        if(DRIVER_POOL.get()==null){
+    public static WebDriver getDriver() {
+        if (DRIVER_POOL.get() == null) {
             setDriver();
         }
         return DRIVER_POOL.get();
     }
 
-    public static final void setDriver(){
+    public static final void setDriver() {
         DriverFactory driverFactory = new DriverFactory();
         DRIVER_POOL.set(driverFactory.getDriver());
-//        System.setProperty("webdriver.chrome.driver", getDriverProperties().get("chromeDriver"));
-//        DRIVER_POOL.set(new ChromeDriver());
     }
 
 
-
-//    public static void quit() {
-//        Logger.info("Closing  browser");
-//        if (DRIVER_POOL.get() != null) {
-//            DRIVER_POOL.get().quit();
-//            DRIVER_POOL.remove();
-//        }
-//    }
-
-    public  void get(String url) {
+    public void get(String url) {
         Logger.info("Go to the URL: " + url);
         getDriver().get(url);
     }
-//    public static String getCurrentUrl() {
-//        return getDriver().getCurrentUrl();
-//
-//    }
-
-//    public static void close() {
-//        Logger.info("Closing tab:" +getDriver().getTitle());
-//        getDriver().close();
-//
-//    }
 
     public static String getTitle() {
         return getDriver().getTitle();
@@ -68,7 +46,7 @@ static WebDriver webDriver;
 
     }
 
-    public static  WebDriver.Navigation navigate() {
+    public static WebDriver.Navigation navigate() {
         return getDriver().navigate();
 
     }
@@ -87,7 +65,7 @@ static WebDriver webDriver;
         return ((JavascriptExecutor) getDriver()).executeScript(script, args);
     }
 
-    public static void terminate(){
+    public static void terminate() {
         DRIVER_POOL.remove();
     }
 

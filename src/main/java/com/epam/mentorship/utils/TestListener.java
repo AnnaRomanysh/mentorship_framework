@@ -9,13 +9,15 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
+import org.testng.xml.XmlSuite;
 
 import java.io.ByteArrayInputStream;
 
 import static com.epam.mentorship.utils.Logger.error;
+import static com.epam.mentorship.utils.Logger.step;
 
 
-public class TestListener implements ITestListener, StepLifecycleListener {
+public class TestListener implements ITestListener, StepLifecycleListener, ISuiteListener{
 
     public void onTestStart(ITestResult result) {
         Driver.setDriver();
@@ -57,7 +59,6 @@ public class TestListener implements ITestListener, StepLifecycleListener {
     public void onFinish(ITestContext context) {
         Driver.terminate();
         Logger.info("Test: " + context.getClass() + " " + context.getName() + "is finished");
-
     }
 
     @Attachment(value = "Page screenshot", type = "image/png")
@@ -72,6 +73,20 @@ public class TestListener implements ITestListener, StepLifecycleListener {
             byte[] sc = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
             Allure.addAttachment(result.getName()+" screenshot", new ByteArrayInputStream(sc));
         }
+    }
+
+    @Override
+    public void onStart(ISuite iSuite) {
+        if(Environment.isParallel()){
+            step("Running test suite in parallel");
+            iSuite.getXmlSuite().setParallel(XmlSuite.ParallelMode.METHODS);
+            iSuite.getXmlSuite().setThreadCount(2);
+        }
+    }
+
+    @Override
+    public void onFinish(ISuite iSuite) {
+
     }
 
 }
