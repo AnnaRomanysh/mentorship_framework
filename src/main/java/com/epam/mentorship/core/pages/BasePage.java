@@ -1,8 +1,8 @@
 package com.epam.mentorship.core.pages;
 
-import com.epam.mentorship.utils.annotations.RelativeUrl;
 import com.epam.mentorship.core.driver.Driver;
 import com.epam.mentorship.utils.Wait;
+import com.epam.mentorship.utils.annotations.RelativeUrl;
 
 import java.lang.annotation.Annotation;
 import java.util.Optional;

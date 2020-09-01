@@ -46,8 +46,9 @@ public class LoginLogoutTest extends BaseTest {
         verifyLoginButton();
         step("Login with unexisted user");
         User user = Data.getUserById(2);
-        loginBO.login(user);
+        loginBO.login(user);;
         step("Verify error message is displayed");
+        errorFormBlockPO.getBlock().waitClickable();
         assertTrue(errorFormBlockPO.getBlock().isDisplayed(), "Error is not displayed");
         step("Verify error message is correct");
         assertEquals(errorFormBlockPO.getErrorText(), getTestData().get("authentication_expected_error_text"));

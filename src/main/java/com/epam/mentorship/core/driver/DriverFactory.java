@@ -9,12 +9,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import static com.epam.mentorship.core.driver.Drivers.CHROME;
-import static com.epam.mentorship.core.driver.Drivers.FIREFOX;
+import static com.epam.mentorship.core.driver.Drivers.*;
 import static com.epam.mentorship.core.parsers.PropertiesReader.getDriverProperties;
 
 public class DriverFactory {
@@ -39,6 +40,10 @@ public class DriverFactory {
                 System.setProperty("webdriver.gecko.driver", getDriverProperties().get("firefoxDriver"));
                 return new FirefoxDriver(getFireFoxOptions());
             })
+            .put(IE, () -> {
+                System.setProperty("webdriver.ie.driver", getDriverProperties().get("ieDriver"));
+                return new InternetExplorerDriver(getInternetExplorerOptions());
+            })
             .build();
 
 
@@ -56,6 +61,15 @@ public class DriverFactory {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setAcceptInsecureCerts(true);
         return firefoxOptions;
+
+    }
+
+    private InternetExplorerOptions getInternetExplorerOptions() {
+        InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
+        internetExplorerOptions.destructivelyEnsureCleanSession();
+        internetExplorerOptions.disableNativeEvents();
+        internetExplorerOptions.ignoreZoomSettings();
+        return internetExplorerOptions;
 
     }
 
