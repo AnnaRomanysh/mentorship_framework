@@ -14,7 +14,7 @@ public class SearchBoxPO extends BasePO {
     @FindBy(name = "submit_search")
     private Element searchButton;
 
-    public void typeSearchText(String text){
+    public void fillSearchInput(String text){
         searchInput.sendKeys(text);
     }
 
@@ -23,7 +23,7 @@ public class SearchBoxPO extends BasePO {
     }
 
     public void search(String text){
-        typeSearchText(text);
+        fillSearchInput(text);
         clickSearch();
     }
 
