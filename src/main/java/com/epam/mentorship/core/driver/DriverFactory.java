@@ -22,15 +22,15 @@ public class DriverFactory {
     private static int DEFAULT_IMPLICITY = 10;
 
 
-    public  WebDriver getDriver() {
-        WebDriver driver =  drivers.get(getBrowser()).get();
+    public WebDriver getDriver() {
+        WebDriver driver = drivers.get(getBrowser()).get();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(DEFAULT_IMPLICITY, TimeUnit.SECONDS);
         return driver;
     }
 
 
-    private  Map<Drivers, Supplier<WebDriver>> drivers = new ImmutableMap.Builder<Drivers, Supplier<WebDriver>>()
+    private Map<Drivers, Supplier<WebDriver>> drivers = new ImmutableMap.Builder<Drivers, Supplier<WebDriver>>()
             .put(CHROME, () -> {
                 System.setProperty("webdriver.chrome.driver", getDriverProperties().get("chromeDriver"));
                 return new ChromeDriver(getChromeOptions());
@@ -46,13 +46,13 @@ public class DriverFactory {
         return Drivers.getDriverType(Environment.getBrowserName());
     }
 
-    private   ChromeOptions getChromeOptions() {
+    private ChromeOptions getChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setAcceptInsecureCerts(true);
         return chromeOptions;
     }
 
-    private  FirefoxOptions getFireFoxOptions() {
+    private FirefoxOptions getFireFoxOptions() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setAcceptInsecureCerts(true);
         return firefoxOptions;

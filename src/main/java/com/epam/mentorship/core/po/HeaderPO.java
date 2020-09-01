@@ -34,7 +34,7 @@ public class HeaderPO extends BasePO {
 
     public void clickSignInLink() {
         waitToBeClickable(signInLink);
-        signInLink.clickJS();
+        signInLink.click();
     }
 
     public void clickSignOutLink() {

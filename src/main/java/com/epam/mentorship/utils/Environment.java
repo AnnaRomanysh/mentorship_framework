@@ -18,6 +18,11 @@ public class Environment {
         return Optional.ofNullable(parallel).orElse(false);
     }
 
+    public static String getSuite(){
+        String suite = System.getenv("SUITE");
+        return Optional.ofNullable(suite).orElse("");
+
+    }
 
  
 }

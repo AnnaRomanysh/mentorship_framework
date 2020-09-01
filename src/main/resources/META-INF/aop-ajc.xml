@@ -3,6 +3,6 @@
         <aspect name="com.cartera.cute.launcher.implementation.allure.StepsAspect"/>
     </aspects>
     <aspects>
-        <aspect name="com.epam.mentorship.utils.AllureAspect"/>
+        <aspect name="com.epam.mentorship.utils.allure.AllureAspect"/>
     </aspects>
 </aspectj>
