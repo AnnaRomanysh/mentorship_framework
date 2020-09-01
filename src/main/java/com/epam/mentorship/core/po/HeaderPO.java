@@ -1,5 +1,6 @@
 package com.epam.mentorship.core.po;
 
+import com.epam.mentorship.core.webelement.Element;
 import com.epam.mentorship.core.webelement.Link;
 import com.google.inject.Inject;
 import lombok.Getter;
@@ -21,6 +22,12 @@ public class HeaderPO extends BasePO {
 
     @FindBy(className = "account")
     Link accountLink;
+
+    @FindBy(id = "header_logo")
+    Element logo;
+
+    @FindBy(className = "shopping_cart")
+    Element cart;
 
     public void clickContactUsLink() {
         contactUsLink.click();
@@ -47,6 +54,10 @@ public class HeaderPO extends BasePO {
 
     public String getAccountUserName(){
         return accountLink.getText().trim();
+    }
+
+    public void clickLogo(){
+        logo.click();
     }
 
 }

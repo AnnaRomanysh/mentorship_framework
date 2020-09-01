@@ -11,7 +11,7 @@ import com.epam.mentorship.data.Data;
 import com.google.inject.Inject;
 import org.testng.annotations.Test;
 
-import static com.epam.mentorship.core.driver.Driver.getDriver;
+import static com.epam.mentorship.Asserter.assertNavigation;
 import static com.epam.mentorship.core.parsers.PropertiesReader.getTestData;
 import static com.epam.mentorship.data.Data.getDefaultUser;
 import static com.epam.mentorship.utils.Logger.step;
@@ -38,7 +38,7 @@ public class LoginLogoutTest extends BaseTest {
         homePage.open();
         headerPO.clickSignInLink();
         step("Verify navigation was done to the Login page: " + loginPage.getPageNavigationLink());
-        assertEquals(getDriver().getCurrentUrl(), loginPage.getPageNavigationLink(), "Navigation was not done to the correct link");
+        assertNavigation(loginPage.getPageNavigationLink());
     }
 
     @Test

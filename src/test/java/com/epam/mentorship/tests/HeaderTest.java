@@ -1,53 +1,61 @@
 package com.epam.mentorship.tests;
 
 import com.epam.mentorship.BaseTest;
-import com.epam.mentorship.businessobject.LoginBO;
-import com.epam.mentorship.core.models.User;
+import com.epam.mentorship.core.pages.ContactUsPage;
 import com.epam.mentorship.core.pages.HomePage;
 import com.epam.mentorship.core.pages.LoginPage;
-import com.epam.mentorship.core.po.ErrorFormBlockPO;
 import com.epam.mentorship.core.po.HeaderPO;
-import com.epam.mentorship.data.Data;
 import com.google.inject.Inject;
 import org.testng.annotations.Test;
 
-import static com.epam.mentorship.core.driver.Driver.getDriver;
-import static com.epam.mentorship.core.parsers.PropertiesReader.getTestData;
+import static com.epam.mentorship.Asserter.assertDisplayed;
+import static com.epam.mentorship.Asserter.assertNavigation;
 import static com.epam.mentorship.utils.Logger.step;
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class HeaderTest extends BaseTest {
 
     @Inject
-    private LoginBO loginBO;
+    private HomePage homePage;
+
+    @Inject
+    private HeaderPO headerPO;
+
     @Inject
     private LoginPage loginPage;
+
     @Inject
-    HomePage homePage;
-    @Inject
-    public HeaderPO headerPO;
-    @Inject
-    public ErrorFormBlockPO errorFormBlockPO;
+    private ContactUsPage contactUs;
 
     @Test
-    public void verifyLoginButton() {
+    public void verifySignInLink() {
         homePage.open();
         headerPO.clickSignInLink();
         step("Verify navigation was done to the Login page: " + loginPage.getPageNavigationLink());
-        assertEquals(getDriver().getCurrentUrl(), loginPage.getPageNavigationLink(), "Navigation was not done to the correct link");
+        assertNavigation(loginPage.getPageNavigationLink());
     }
 
     @Test
-    public void verifyLoginWithUnexistedUser() {
-        verifyLoginButton();
-        step("Login with unexisted user");
-        User user = Data.getUserById(2);
-        loginBO.login(user);
-        step("Verify error message is displayed");
-        assertTrue(errorFormBlockPO.getBlock().isDisplayed(), "Error is not displayed");
-        step("Verify error message is correct");
-        assertEquals(errorFormBlockPO.getErrorText(), getTestData().get("authentication_expected_error_text"));
+    public void verifyLogo() {
+        homePage.open();
+        step("Verify logo is present");
+        assertTrue(headerPO.getLogo().isDisplayed(),"Logo is not present");
+        loginPage.open();
+        step("Verify click on logo navigates to the Home page");
+        headerPO.clickLogo();
+        assertNavigation(homePage.getPageNavigationLink());
     }
+
+    @Test
+    public void verifyContactUsLink() {
+        homePage.open();
+        contactUs.open();
+        step("Verify Contact us link is present");
+        assertDisplayed(headerPO.getContactUsLink(), "Contact us link");
+        step("Verify click on Contact us link navigates to the Home page");
+        headerPO.clickContactUsLink();
+        assertNavigation(contactUs.getPageNavigationLink());
+    }
+
 
 }
