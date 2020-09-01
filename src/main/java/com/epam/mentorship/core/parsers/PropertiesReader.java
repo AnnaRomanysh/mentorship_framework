@@ -6,7 +6,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 public class PropertiesReader {
 
@@ -53,5 +56,14 @@ public class PropertiesReader {
     public String get(String name) {
         return this.prop.getProperty(name);
     }
+
+    public List<String> getList(String name) {
+        return Arrays.stream(get(name).split(";")).filter(el -> !el.isEmpty()).collect(Collectors.toList());
+    }
+
+    public String getRandomValue(String name) {
+        return  getList(name).stream().findAny().get();
+    }
+
 
 }

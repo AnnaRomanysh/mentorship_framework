@@ -11,7 +11,7 @@ import com.epam.mentorship.data.Data;
 import com.google.inject.Inject;
 import org.testng.annotations.Test;
 
-import static com.epam.mentorship.Asserter.assertNavigation;
+import static com.epam.mentorship.asserters.Asserter.assertNavigation;
 import static com.epam.mentorship.core.parsers.PropertiesReader.getTestData;
 import static com.epam.mentorship.data.Data.getDefaultUser;
 import static com.epam.mentorship.utils.Logger.step;
