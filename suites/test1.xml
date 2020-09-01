@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Smoke Test Suite" >
+<suite name="Test 1" >
         <!--parallel="methods" thread-count="2-->
-    <test name="Content API InStore Offers tests">
+    <test name="Bld bdbkdp">
         <classes>
         <class name="com.epam.mentorship.tests.MainMenuTest" />
             <!--<class name="com.epam.mentorship.tests.LoginLogoutTest" />-->
