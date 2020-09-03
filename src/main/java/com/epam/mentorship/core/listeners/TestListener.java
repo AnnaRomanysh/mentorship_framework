@@ -1,26 +1,26 @@
 package com.epam.mentorship.core.listeners;
 
+import com.epam.mentorship.core.allure.AllureEnvironment;
 import com.epam.mentorship.core.driver.Driver;
 import com.epam.mentorship.utils.Environment;
 import com.epam.mentorship.utils.Logger;
-import com.epam.mentorship.core.allure.AllureEnvironment;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.listener.StepLifecycleListener;
 import io.qameta.allure.model.Status;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.testng.*;
 import org.testng.xml.XmlSuite;
 
 import java.io.ByteArrayInputStream;
 
+import static com.epam.mentorship.core.driver.Driver.quit;
 import static com.epam.mentorship.utils.Logger.error;
 import static com.epam.mentorship.utils.Logger.step;
 
 
-public class TestListener implements ITestListener, StepLifecycleListener, ISuiteListener{
+public class TestListener implements ITestListener, StepLifecycleListener, ISuiteListener {
 
     public void onTestStart(ITestResult result) {
         Driver.setDriver();
@@ -28,26 +28,18 @@ public class TestListener implements ITestListener, StepLifecycleListener, ISuit
     }
 
     public void onTestSuccess(ITestResult result) {
-        WebDriver driver = Driver.getDriver();
-        if (driver != null) {
-            driver.quit();
-        }
+        quit();
         Logger.info("Test: " + result.getClass() + " " + result.getName() + " [*PASSED*]");
     }
 
     public void onTestFailure(ITestResult result) {
-        WebDriver driver = Driver.getDriver();
-        if (driver != null) {
-            driver.quit();
-        }
+        takeScreenshot();
+        quit();
         error("Test: " + result.getClass() + " " + result.getName() + "[*FAILED*]");
     }
 
     public void onTestSkipped(ITestResult result) {
-        WebDriver driver = Driver.getDriver();
-        if (driver != null) {
-            driver.quit();
-        }
+        quit();
         error("Test: " + result.getClass() + " " + result.getName() + "[*SKIPPED*]");
     }
 
@@ -72,17 +64,15 @@ public class TestListener implements ITestListener, StepLifecycleListener, ISuit
 
     @Override
     public void afterStepStop(io.qameta.allure.model.StepResult result) {
-        byte[] sc1 = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-        Allure.addAttachment(result.getName()+" screenshot", new ByteArrayInputStream(sc1));
         if (result.getStatus().equals(Status.FAILED) || result.getStatus().equals(Status.BROKEN)) {
             byte[] sc = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-            Allure.addAttachment(result.getName()+" screenshot", new ByteArrayInputStream(sc));
+            Allure.addAttachment(result.getName() + " screenshot", new ByteArrayInputStream(sc));
         }
     }
 
     @Override
     public void onStart(ISuite iSuite) {
-        if(Environment.isParallel()){
+        if (Environment.isParallel()) {
             step("Running test suite in parallel");
             iSuite.getXmlSuite().setParallel(XmlSuite.ParallelMode.CLASSES);
             iSuite.getXmlSuite().setThreadCount(2);

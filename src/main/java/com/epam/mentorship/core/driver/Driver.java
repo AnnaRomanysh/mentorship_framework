@@ -94,6 +94,10 @@ public class Driver {
         DRIVER_POOL.remove();
     }
 
+    public static void quit() {
+       getDriver().quit();
+    }
+
 
 }
 
