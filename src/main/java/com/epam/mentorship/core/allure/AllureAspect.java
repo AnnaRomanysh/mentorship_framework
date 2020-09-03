@@ -1,4 +1,4 @@
-package com.epam.mentorship.utils.allure;
+package com.epam.mentorship.core.allure;
 
 import io.qameta.allure.Allure;
 import io.qameta.allure.AllureLifecycle;

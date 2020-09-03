@@ -1,4 +1,4 @@
-package com.epam.mentorship.core.parsers;
+package com.epam.mentorship.utils.parsers;
 
 import com.epam.mentorship.utils.Logger;
 
@@ -14,9 +14,7 @@ import java.util.stream.Collectors;
 public class PropertiesReader {
 
     private static String propertiesLocation = "src//main//resources";
-    private static String pageProperties = "//pages.properties";
-    private static String driverProperties = "//driver.properties";
-    private static String testDataProperties = "//testdata/data.properties";
+
     private Properties prop;
 
 
@@ -37,20 +35,8 @@ public class PropertiesReader {
 
     }
 
-    private static PropertiesReader getProperties(String propertyFilePath) {
+    public static PropertiesReader getProperties(String propertyFilePath) {
         return new PropertiesReader(propertiesLocation + propertyFilePath);
-    }
-
-    public static PropertiesReader getDriverProperties() {
-        return getProperties(driverProperties);
-    }
-
-    public static PropertiesReader getTestData() {
-        return getProperties(testDataProperties);
-    }
-
-    public static PropertiesReader getPageProperties() {
-        return getProperties(pageProperties);
     }
 
     public String get(String name) {
@@ -62,7 +48,7 @@ public class PropertiesReader {
     }
 
     public String getRandomValue(String name) {
-        return  getList(name).stream().findAny().get();
+        return  getList(name).stream().findAny().orElseThrow(()->new IllegalArgumentException(String.format("There is no property with name: %s", name)));
     }
 
 

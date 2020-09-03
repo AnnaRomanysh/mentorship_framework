@@ -1,4 +1,4 @@
-package com.epam.mentorship.asserters;
+package com.epam.mentorship.utils.asserters;
 
 import com.epam.mentorship.core.webelement.Element;
 

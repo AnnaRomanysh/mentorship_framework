@@ -1,7 +1,7 @@
 package com.epam.mentorship;
 
 import com.epam.mentorship.core.injector.Injector;
-import com.epam.mentorship.utils.listeners.TestListener;
+import com.epam.mentorship.core.listeners.TestListener;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Listeners;
 

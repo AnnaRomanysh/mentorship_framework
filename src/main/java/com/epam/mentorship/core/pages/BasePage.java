@@ -7,7 +7,7 @@ import com.epam.mentorship.utils.annotations.RelativeUrl;
 import java.lang.annotation.Annotation;
 import java.util.Optional;
 
-import static com.epam.mentorship.core.parsers.PropertiesReader.getPageProperties;
+import static com.epam.mentorship.data.PropertiesData.getPageProperties;
 import static com.epam.mentorship.utils.Logger.step;
 
 public abstract class BasePage implements IPage {

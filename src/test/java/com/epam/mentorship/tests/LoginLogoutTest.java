@@ -7,16 +7,18 @@ import com.epam.mentorship.core.pages.HomePage;
 import com.epam.mentorship.core.pages.LoginPage;
 import com.epam.mentorship.core.po.ErrorFormBlockPO;
 import com.epam.mentorship.core.po.HeaderPO;
-import com.epam.mentorship.data.Data;
+import com.epam.mentorship.data.UserData;
 import com.google.inject.Inject;
 import org.testng.annotations.Test;
 
-import static com.epam.mentorship.asserters.Asserter.assertNavigation;
-import static com.epam.mentorship.core.parsers.PropertiesReader.getTestData;
-import static com.epam.mentorship.data.Data.getDefaultUser;
+import static com.epam.mentorship.data.PropertiesData.getTestData;
+import static com.epam.mentorship.data.UserData.getDefaultUser;
 import static com.epam.mentorship.utils.Logger.step;
+import static com.epam.mentorship.utils.asserters.Asserter.assertNavigation;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+
+;
 
 
 public class LoginLogoutTest extends BaseTest {
@@ -38,14 +40,14 @@ public class LoginLogoutTest extends BaseTest {
         homePage.open();
         headerPO.clickSignInLink();
         step("Verify navigation was done to the Login page: " + loginPage.getPageNavigationLink());
-        assertNavigation(loginPage.getPageNavigationLink());
+         assertNavigation(loginPage.getPageNavigationLink());
     }
 
     @Test
     public void verifyLoginWithUnexistedUser() {
         verifyLoginButton();
         step("Login with unexisted user");
-        User user = Data.getUserById(2);
+        User user = UserData.getUserById(2);
         loginBO.login(user);;
         step("Verify error message is displayed");
         errorFormBlockPO.getBlock().waitClickable();

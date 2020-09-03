@@ -2,12 +2,12 @@ package com.epam.mentorship.data;
 
 
 import com.epam.mentorship.core.models.User;
-import com.epam.mentorship.core.parsers.JsonReader;
+import com.epam.mentorship.utils.parsers.JsonReader;
 
 import java.util.List;
 
 
-public class Data {
+public class UserData {
 
     public static final String USERS_FILE_NAME = "Users.json";
 

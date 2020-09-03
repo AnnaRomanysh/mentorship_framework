@@ -1,9 +1,9 @@
-package com.epam.mentorship.utils.listeners;
+package com.epam.mentorship.core.listeners;
 
 import com.epam.mentorship.core.driver.Driver;
 import com.epam.mentorship.utils.Environment;
 import com.epam.mentorship.utils.Logger;
-import com.epam.mentorship.utils.allure.AllureEnvironment;
+import com.epam.mentorship.core.allure.AllureEnvironment;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.listener.StepLifecycleListener;

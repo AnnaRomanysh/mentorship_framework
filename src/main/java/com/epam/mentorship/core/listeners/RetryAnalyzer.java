@@ -1,6 +1,5 @@
-package com.epam.mentorship.utils.listeners;
+package com.epam.mentorship.core.listeners;
 
-import com.epam.mentorship.utils.Retry;
 import org.testng.annotations.ITestAnnotation;
 import org.testng.internal.annotations.IAnnotationTransformer;
 

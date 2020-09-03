@@ -1,10 +1,16 @@
 package com.epam.mentorship.core.driver;
 
-import com.epam.mentorship.utils.Logger;
 import com.google.inject.Inject;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.interactions.Actions;
+
+import java.util.Optional;
+import java.util.Set;
+
+import static com.epam.mentorship.utils.Logger.error;
+import static com.epam.mentorship.utils.Logger.info;
 
 
 public class Driver {
@@ -31,7 +37,7 @@ public class Driver {
 
 
     public void get(String url) {
-        Logger.info("Go to the URL: " + url);
+        info("Go to the URL: " + url);
         getDriver().get(url);
     }
 
@@ -52,7 +58,27 @@ public class Driver {
 
     public static WebDriver.TargetLocator switchTo() {
         return getDriver().switchTo();
+    }
 
+    public static void switchToWindow() {
+        String currentHandle = getDriver().getWindowHandle();
+        Set<String> handles = getDriver().getWindowHandles();
+        handles.remove(currentHandle);
+        if (handles.size() > 0)
+            getDriver().switchTo().window(handles.iterator().next());
+    }
+
+    public static void closeWindowsExceptMain() {
+        info("Close remaning windows");
+        try {
+            Set<String> windows = getDriver().getWindowHandles();
+            String firstTab = windows.stream().findFirst().get();
+            windows.stream().filter(window -> !window.equalsIgnoreCase(firstTab)).forEach(window -> getDriver().switchTo().window(window).close());
+            String window = Optional.of(firstTab).orElse(getDriver().getWindowHandles().stream().findFirst().get());getDriver().switchTo().window(window);
+        }
+        catch (WebDriverException e){
+            error("Can't close the window: "+e );
+        }
     }
 
     public static Actions actions() {

@@ -1,5 +1,5 @@
 <aspectj>
     <aspects>
-        <aspect name="com.epam.mentorship.utils.allure.AllureAspect"/>
+        <aspect name="com.epam.mentorship.core.allure.AllureAspect"/>
     </aspects>
 </aspectj>

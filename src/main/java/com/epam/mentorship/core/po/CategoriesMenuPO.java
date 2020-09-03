@@ -2,7 +2,6 @@ package com.epam.mentorship.core.po;
 
 import com.epam.mentorship.core.webelement.Element;
 import com.epam.mentorship.utils.Logger;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;

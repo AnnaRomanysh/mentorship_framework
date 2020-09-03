@@ -16,7 +16,8 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static com.epam.mentorship.core.driver.Drivers.*;
-import static com.epam.mentorship.core.parsers.PropertiesReader.getDriverProperties;
+import static com.epam.mentorship.data.PropertiesData.getDriverProperties;
+
 
 public class DriverFactory {
 

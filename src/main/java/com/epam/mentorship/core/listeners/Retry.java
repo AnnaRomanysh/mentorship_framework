@@ -1,4 +1,4 @@
-package com.epam.mentorship.utils;
+package com.epam.mentorship.core.listeners;
 
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;

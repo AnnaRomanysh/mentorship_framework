@@ -10,8 +10,8 @@ import com.epam.mentorship.core.po.SearchBoxPO;
 import com.google.inject.Inject;
 import org.testng.annotations.Test;
 
-import static com.epam.mentorship.asserters.Asserter.*;
-import static com.epam.mentorship.core.parsers.PropertiesReader.getTestData;
+import static com.epam.mentorship.utils.asserters.Asserter.*;
+import static com.epam.mentorship.data.PropertiesData.getTestData;
 import static com.epam.mentorship.utils.Logger.step;
 import static org.testng.Assert.assertTrue;
 

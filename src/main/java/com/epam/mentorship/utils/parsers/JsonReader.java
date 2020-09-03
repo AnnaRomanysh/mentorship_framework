@@ -1,4 +1,4 @@
-package com.epam.mentorship.core.parsers;
+package com.epam.mentorship.utils.parsers;
 
 import com.epam.mentorship.utils.Logger;
 import com.google.gson.Gson;
