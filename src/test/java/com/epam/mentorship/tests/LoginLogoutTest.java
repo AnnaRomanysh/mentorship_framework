@@ -42,6 +42,14 @@ public class LoginLogoutTest extends BaseTest {
     }
 
     @Test
+    public void verifyTestFail() {
+        homePage.open();
+        headerPO.clickSignInLink();
+        step("Verify navigation was done to the Login page: " + loginPage.getPageNavigationLink());
+        assertNavigation(loginPage.getPageNavigationLink()+" test fail");
+    }
+
+    @Test
     public void verifyLoginWithUnexistedUser() {
         verifyLoginButton();
         step("Login with unexisted user");
