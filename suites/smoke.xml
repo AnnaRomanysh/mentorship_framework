@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Smoke Test Suite" >
     <listeners>
-        <listener class-name="com.epam.mentorship.utils.listeners.RetryAnalyzer"/>
+        <listener class-name="com.epam.mentorship.core.listeners.RetryAnalyzer"/>
     </listeners>
     <test name="Login test">
 

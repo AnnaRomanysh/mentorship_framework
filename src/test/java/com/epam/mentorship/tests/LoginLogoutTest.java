@@ -18,8 +18,6 @@ import static com.epam.mentorship.utils.asserters.Asserter.assertNavigation;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-;
-
 
 public class LoginLogoutTest extends BaseTest {
 
@@ -48,7 +46,7 @@ public class LoginLogoutTest extends BaseTest {
         verifyLoginButton();
         step("Login with unexisted user");
         User user = UserData.getUserById(2);
-        loginBO.login(user);;
+        loginBO.login(user);
         step("Verify error message is displayed");
         errorFormBlockPO.getBlock().waitClickable();
         assertTrue(errorFormBlockPO.getBlock().isDisplayed(), "Error is not displayed");
