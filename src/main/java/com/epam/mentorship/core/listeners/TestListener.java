@@ -71,7 +71,9 @@ public class TestListener implements ITestListener, StepLifecycleListener, ISuit
 
 
     @Override
-    public void afterStepUpdate(io.qameta.allure.model.StepResult result) {
+    public void afterStepStop(io.qameta.allure.model.StepResult result) {
+        byte[] sc1 = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+        Allure.addAttachment(result.getName()+" screenshot", new ByteArrayInputStream(sc1));
         if (result.getStatus().equals(Status.FAILED) || result.getStatus().equals(Status.BROKEN)) {
             byte[] sc = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
             Allure.addAttachment(result.getName()+" screenshot", new ByteArrayInputStream(sc));
