@@ -5,7 +5,7 @@ public enum  Drivers {
     CHROME("chrome"),
     FIREFOX("firefox"),
     IE("iexplorer"),
-    REMOTE__DRIVER("remote web driver");
+    REMOTE__DRIVER("remote");
 
 
     private String driverValue;
